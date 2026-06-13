@@ -1,1 +1,52 @@
-<h1>Hello World</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.orange.min.css"
+    />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Palettes Europe</h1>
+      <form id="paleuro" method="post">
+        <label for="date"
+          >Date :
+          <input type="date" id="date" name="date" />
+        </label>
+        <input type="hidden" name="mode" value="submit" />
+        <label for="tpsid"
+          >Transporteur :
+          <select id="tpsid" name="tpsid">
+            <option value="">Choisir...</option>
+            <option value="05">K+Nagel</option>
+            <option value="11">Heppner</option>
+            <option value="15">DBSchenker</option>
+            <option value="21">MTA</option>
+          </select>
+        </label>
+        <label for="palettes"
+          >Palettes retourn&eacute;es :
+          <input type="number" id="palettes" name="palettes" />
+        </label>
+        <input
+          type="text"
+          id="comment"
+          name="comment"
+          maxlength="50"
+          placeholder="Commentaire..."
+        />
+        <label for="numsal"
+          >Code secret :
+          <input type="number" id="numsal" name="numsal" />
+        </label>
+        <input type="submit" id="submitBtn" value="Valider" />
+      </form>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
