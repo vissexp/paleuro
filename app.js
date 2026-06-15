@@ -39,20 +39,20 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
     body: postData,
   });
   const respData = await response.json();
-  console.log(respData)
-
+  
   const result = document.getElementById("result");
-  result.innerHTML = respData.message;
+  //result.style.transition = "ease .5s";
   if (respData.result === "OK") {
     result.style.color = "green";
   } else {
     result.style.color = "red";
   }
+  result.innerHTML = respData.message;
 
   setTimeout(() => {
-    result.value = "";
     result.style.color = "";
-  }, 3000);
+    result.innerHTML = "";
+  }, 5000);
 
   // store numsal
   const numsal = document.getElementById("numsal")?.value;
