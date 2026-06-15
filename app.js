@@ -40,9 +40,9 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   });
   const respData = await response.json();
   console.log(respData)
-  
+
   const result = document.getElementById("result");
-  result.value = respData.message;
+  result.innerHTML = respData.message;
   if (respData.result === "OK") {
     result.style.color = "green";
   } else {
