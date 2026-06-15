@@ -1,5 +1,13 @@
 const APPKEY = "vissexp-paleuro";
-const JASON2 = "http://www.vis-express.com/jason2.php";
+const JASON2 = "https://www.vis-express.com/jason2.php";
+const FIELDS = [
+  "date",
+  "tpsid",
+  "palettes",
+  "comment",
+  "secret",
+  "numsal"
+];
 
 document.addEventListener("DOMContentLoaded", () => {
   const paleuro = JSON.parse(localStorage.getItem(APPKEY)) || {};
@@ -9,29 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   const url = new URLSearchParams(document.URL);
   const urlSecret = url.get("s");
-  if (urlSecret) {
-    const secret = document.getElementById("secret");
-    secret.value = urlSecret;
-  }
+  if (urlSecret)
+    document.getElementById("secret").value = urlSecret;
 });
 
 document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // submit
-  const data = [
-    "date",
-    "tpsid",
-    "palettes",
-    "comment",
-    "secret",
-    "numsal"
-  ].reduce((all, field) => {
+  let postData = FIELDS.reduce((all, field) => {
     const value = e.target.querySelector("#" + field).value;
     all[field] = value;
     return all;
   }, {});
-  const postData = new URLSearchParams({ prg: "paleuro", ...data }).toString();
+  postData = new URLSearchParams({ prg: "paleuro", ...data }).toString();
   const response = await fetch(JASON2, {
     method: "POST",
     headers: {
@@ -41,6 +40,7 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   });
   const respData = await response.json();
   console.log(respData)
+  
   // store numsal
   const numsal = document.getElementById("numsal")?.value;
   if (numsal)
