@@ -30,7 +30,7 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
     all[field] = value;
     return all;
   }, {});
-  postData = new URLSearchParams({ prg: "paleuro", ...data }).toString();
+  postData = new URLSearchParams({ prg: "paleuro", ...postData }).toString();
   const response = await fetch(JASON2, {
     method: "POST",
     headers: {
