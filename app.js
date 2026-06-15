@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.querySelector("#paleuro").addEventListener("submit", (e) => {
+document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // submit
