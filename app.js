@@ -39,6 +39,8 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
     body: postData,
   });
   const respData = await response.json();
+  console.log(respData)
+  
   const result = document.getElementById("result");
   result.value = respData.message;
   if (respData.result === "OK") {
@@ -46,7 +48,7 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   } else {
     result.style.color = "red";
   }
-  
+
   setTimeout(() => {
     result.value = "";
     result.style.color = "";
