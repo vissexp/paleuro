@@ -47,6 +47,7 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
   // result
   const respData = await response.json();
   const result = document.getElementById("result");
+  e.target.querySelector("#submitBtn").disabled = true;
   if (respData.result === "OK") {
     result.style.color = "green";
     result.style.backgroundColor = "#051b11";
@@ -55,11 +56,13 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
     result.style.backgroundColor = "#2c0b0e";
   }
   result.innerHTML = respData.message;
-
+  
   setTimeout(() => {
     result.style.color = "";
     result.style.backgroundColor = "";
     result.innerHTML = "";
+    e.target.querySelector("#submitBtn").disabled = false;
+    FIELDS.forEach(field => e.target.querySelector("#" + field).value = "");
   }, 5000);
 
   // store numsal
