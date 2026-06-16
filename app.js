@@ -15,10 +15,15 @@ document.addEventListener("DOMContentLoaded", () => {
   if (paleuro?.numsal !== "") {
     numsal.value = paleuro.numsal;
   }
-  const url = new URLSearchParams(document.URL);
+  
+  const url = new URLSearchParams(window.location.search);
   const urlSecret = url.get("s");
   if (urlSecret)
     document.getElementById("secret").value = urlSecret;
+
+  const result = document.getElementById("result");
+  result.style.textAlign = "center";
+  
 });
 
 document.querySelector("#paleuro").addEventListener("submit", async (e) => {
@@ -38,19 +43,22 @@ document.querySelector("#paleuro").addEventListener("submit", async (e) => {
     },
     body: postData,
   });
-  const respData = await response.json();
   
+  // result
+  const respData = await response.json();
   const result = document.getElementById("result");
-  //result.style.transition = "ease .5s";
   if (respData.result === "OK") {
     result.style.color = "green";
+    result.style.backgroundColor = "#051b11";
   } else {
     result.style.color = "red";
+    result.style.backgroundColor = "#2c0b0e";
   }
   result.innerHTML = respData.message;
 
   setTimeout(() => {
     result.style.color = "";
+    result.style.backgroundColor = "";
     result.innerHTML = "";
   }, 5000);
 
